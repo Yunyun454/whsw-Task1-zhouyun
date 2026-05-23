@@ -1,11 +1,11 @@
 import random
-target = round(random.uniform(1, 100), 2)
+target: float = round(random.uniform(1.0, 100.0), 2)
 count = 0
 max_times = 8
-precision = 0.5
+precision = 1.0
 print("猜数字小游戏（带精度判断）")
-print("数字范围：1 - 100")
-print("误差在0.5以内都判定为猜对")
+print("数字范围：1.0 ~ 100.0")
+print("误差在1.0以内都判定为猜对")
 print("总共只有8次猜测机会")
 while True:
     count += 1
@@ -14,14 +14,14 @@ while True:
         print("真实数字是：", target)
         break
 
-    input_str = input("输入你猜测的数值：")
+    input_str: str = input("输入你猜测的数值：")
     try:
         guess_num = float(input_str)
-    except:
-        print("输入格式错误，请输入数字")
+    except ValueError:
+        print("输入格式错误，请输入数字！")
+        count -= 1
         continue
     diff = abs(guess_num - target)
-
     if diff < precision:
         print("数值接近，符合精度要求，猜对啦！")
         print("本次总共猜测次数：", count)
