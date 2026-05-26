@@ -16,17 +16,17 @@ def add_member(manager):
     print("\n----- 添加队员 -----")
     name = input("请输入队员姓名：").strip()
     if not name:
-        print("❌ 姓名不能为空！")
+        print("姓名不能为空！")
         return
     
     group = input("请输入组别（视觉/电控/机械/运营）：").strip()
     valid_groups = ["视觉", "电控", "机械", "运营"]
     if group not in valid_groups:
-        print(f"❌ 组别无效，请输入：{'/'.join(valid_groups)}")
+        print(f"组别无效，请输入：{'/'.join(valid_groups)}")
         return
     
     member = manager.add_member(name, group)
-    print(f"✅ 添加成功！队员编号：{member.member_id}，姓名：{member.name}，组别：{member.group}，初始积分：{member.score}")
+    print(f"添加成功！队员编号：{member.member_id}，姓名：{member.name}，组别：{member.group}，初始积分：{member.score}")
 
 def show_all_members(manager):
     print("\n----- 所有队员 -----")
@@ -48,17 +48,17 @@ def add_score(manager):
     try:
         points = int(input("请输入要加的分数："))
         if points <= 0:
-            print("❌ 分数必须为正数！")
+            print("分数必须为正数！")
             return
     except ValueError:
-        print("❌ 请输入有效的数字！")
+        print("请输入有效的数字！")
         return
     
     member = manager.add_score(member_id, points)
     if member:
-        print(f"✅ 成功为 {member.name} 增加 {points} 分，当前积分：{member.score}")
+        print(f"成功为 {member.name} 增加 {points} 分，当前积分：{member.score}")
     else:
-        print(f"❌ 未找到编号为 {member_id} 的队员！")
+        print(f"未找到编号为 {member_id} 的队员！")
 
 def deduct_score(manager):
     print("\n----- 为队员扣分 -----")
@@ -67,20 +67,20 @@ def deduct_score(manager):
     try:
         points = int(input("请输入要扣的分数："))
         if points <= 0:
-            print("❌ 分数必须为正数！")
+            print("分数必须为正数！")
             return
     except ValueError:
-        print("❌ 请输入有效的数字！")
+        print("请输入有效的数字！")
         return
     
     member, success = manager.deduct_score(member_id, points)
     if member:
         if success:
-            print(f"✅ 成功为 {member.name} 扣除 {points} 分，当前积分：{member.score}")
+            print(f"成功为 {member.name} 扣除 {points} 分，当前积分：{member.score}")
         else:
-            print(f"❌ 扣除分数不能大于当前积分（当前积分：{member.score}）！")
+            print(f"扣除分数不能大于当前积分（当前积分：{member.score}）！")
     else:
-        print(f"❌ 未找到编号为 {member_id} 的队员！")
+        print(f"未找到编号为 {member_id} 的队员！")
 
 def rank_all(manager):
     print("\n----- 积分排行榜 -----")
@@ -103,7 +103,7 @@ def delete_member(manager):
     
     member = manager.find_member(member_id)
     if not member:
-        print(f"❌ 未找到编号为 {member_id} 的队员！")
+        print(f"未找到编号为 {member_id} 的队员！")
         return
     
     print(f"⚠ 即将删除队员：{member.member_id}  {member.name}  {member.group}  {member.score}分")
@@ -111,7 +111,7 @@ def delete_member(manager):
     
     if confirm == 'y':
         manager.delete_member(member_id)
-        print(f"✅ 队员 {member_id} {member.name} 已删除！")
+        print(f"队员 {member_id} {member.name} 已删除！")
     else:
         print("已取消删除")
 
@@ -134,10 +134,10 @@ def main():
         elif choice == '6':
             delete_member(manager)
         elif choice == '7':
-            print("\n👋 感谢使用 RoboMaster 队员积分管理系统，再见！")
+            print("\n感谢使用 RoboMaster 队员积分管理系统，再见！")
             break
         else:
-            print("❌ 无效选择，请输入 1-7 之间的数字！")
+            print("无效选择，请输入 1-7 之间的数字！")
 
 if __name__ == "__main__":
     main()
